@@ -11,6 +11,6 @@ using System.Text;
             Minichki igra = new Minichki();
             igra.PlayMines();
         }
-        dsadsadas
+        
     }
 
