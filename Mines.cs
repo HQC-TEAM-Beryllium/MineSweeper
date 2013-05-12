@@ -32,6 +32,7 @@ namespace minesweeper
         public void PrintScoreBoard()
         {
             int currentCounter = 1;
+            const int MaxTopScoredUsers = 6;
 
             Console.WriteLine();
             if (this.scoreBoard.Values.Count == 0)
@@ -49,7 +50,7 @@ namespace minesweeper
 
                     foreach (string person in this.scoreBoard[key])
                     {
-                        if (currentCounter < 6)
+                        if (currentCounter < MaxTopScoredUsers)
                         //nedei se zamislq za tui 6!
                         //vqrno e i nqma kak da stane inache
                         //moje da go priemesh kato vid kod
@@ -77,9 +78,9 @@ namespace minesweeper
 
     public class Mines
     {
-        private const int NUMBER_OF_MINES = 15;
-        private const int MINES_FIELD_ROWS = 5;
-        private const int MINES_FIELD_COLS = 10;
+        private const int NumberOfMines = 15;
+        private const int MinesFieldRows = 5;
+        private const int MinesFieldCols = 10;
 
         private static void Display(string[,] matrixOfTheMines, bool boomed)
         {
@@ -87,30 +88,30 @@ namespace minesweeper
             Console.WriteLine("     0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");
 
-            for (int i = 0; i < matrixOfTheMines.GetLength(0); i++)
+            for (int row = 0; row < matrixOfTheMines.GetLength(0); row++)
             {
-                Console.Write("{0} | ", i);
+                Console.Write("{0} | ", row);
 
-                for (int j = 0; j < matrixOfTheMines.GetLength(1); j++)
+                for (int col = 0; col < matrixOfTheMines.GetLength(1); col++)
                 {
-                    if (!(boomed) && ((matrixOfTheMines[i, j] == "") || (matrixOfTheMines[i, j] == "*")))
+                    if (!(boomed) && ((matrixOfTheMines[row, col] == "") || (matrixOfTheMines[row, col] == "*")))
                     {
                         Console.Write(" ?");
                     }
 
-                    if (!(boomed) && (matrixOfTheMines[i, j] != "") && (matrixOfTheMines[i, j] != "*"))
+                    if (!(boomed) && (matrixOfTheMines[row, col] != "") && (matrixOfTheMines[row, col] != "*"))
                     {
-                        Console.Write(" {0}", matrixOfTheMines[i, j]);
+                        Console.Write(" {0}", matrixOfTheMines[row, col]);
                     }
 
-                    if ((boomed) && (matrixOfTheMines[i, j] == ""))
+                    if ((boomed) && (matrixOfTheMines[row, col] == ""))
                     {
                         Console.Write(" -");
                     }
 
-                    if ((boomed) && (matrixOfTheMines[i, j] != ""))
+                    if ((boomed) && (matrixOfTheMines[row, col] != ""))
                     {
-                        Console.Write(" {0}", matrixOfTheMines[i, j]);
+                        Console.Write(" {0}", matrixOfTheMines[row, col]);
                     }
 
                 }
@@ -188,7 +189,7 @@ namespace minesweeper
             minesCounter = 0;
             revealedCellsCounter = 0;
             isBoomed = false;
-            mines = new string[MINES_FIELD_ROWS, MINES_FIELD_COLS];
+            mines = new string[MinesFieldRows, MinesFieldCols];
 
             for (int i = 0; i < mines.GetLength(0); i++)
             {
@@ -346,7 +347,7 @@ namespace minesweeper
         {
             int minesCounter = 0;
 
-            while (minesCounter < NUMBER_OF_MINES)
+            while (minesCounter < NumberOfMines)
             {
                 int randomRow = randomMines.Next(0, 5);
                 int randomCol = randomMines.Next(0, 10);
