@@ -5,6 +5,7 @@ namespace MineSweeper
     public class Mines
     {
         private static readonly ScoreBoard scoreBoard = new ScoreBoard();
+
         private const int NumberOfMines = 15;
         private const int MinesFieldRows = 5;
         private const int MinesFieldCols = 10;
@@ -179,6 +180,7 @@ namespace MineSweeper
 
                             Console.WriteLine();
                             PlayMines();
+                            return;
                         }
 
                         bool winner = Winner(mines, minesCounter);
@@ -193,6 +195,7 @@ namespace MineSweeper
 
                             Console.WriteLine();
                             PlayMines();
+                            return;
                         }
                         revealedCellsCounter++;
                     }
@@ -221,7 +224,7 @@ namespace MineSweeper
                             {
                                 Console.WriteLine();
                                 PlayMines();
-                                break;
+                                return;
                             }
                     }
                 }

@@ -50,7 +50,6 @@ namespace MineSweeper
             Assert.IsTrue((checkHasMines == false) && (matrix[0, 0] == counter.ToString()));
             Assert.AreEqual(cntMines == 0, checkHasMines == false);
             Assert.IsTrue((isWinner == true) && (matrixSize == 50));
-
         }
 
         [TestMethod]
