@@ -1,0 +1,6 @@
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\bin\Debug\Minesweeper.exe
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\bin\Debug\Minesweeper.pdb
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\bin\Debug\PowerCollections.dll
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\obj\x86\Debug\Team-Work-Project.csprojResolveAssemblyReference.cache
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\obj\x86\Debug\Minesweeper.exe
+D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\obj\x86\Debug\Minesweeper.pdb
