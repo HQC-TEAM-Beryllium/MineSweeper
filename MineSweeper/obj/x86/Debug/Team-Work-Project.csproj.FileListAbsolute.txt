@@ -6,3 +6,7 @@ D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\obj\x86\Debug\Minesweeper.exe
 D:\Telerik Academy\C# TeamWork\KPK\MineSweeper\obj\x86\Debug\Minesweeper.pdb
 C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Minesweeper.exe
 C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Minesweeper.pdb
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.exe
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.pdb
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\PowerCollections.dll
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Team-Work-Project.csprojResolveAssemblyReference.cache
