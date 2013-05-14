@@ -280,7 +280,7 @@ namespace MineSweeper
                     }
                 }
 
-                else if (Proverka(line))
+                else if (CheckIfCommandIsValid(line))
                 {
                     switch (line)
                     {
@@ -310,16 +310,9 @@ namespace MineSweeper
             }
         }
 
-        private static bool Proverka(string line)
+        private static bool CheckIfCommandIsValid(string line)
         {
-            if (line.Equals("top") || line.Equals("restart") || line.Equals("exit"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return line.Equals("top") || line.Equals("restart") || line.Equals("exit");
         }
 
         private static bool IsMoveEntered(string line)
