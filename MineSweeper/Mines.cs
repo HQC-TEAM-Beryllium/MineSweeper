@@ -47,29 +47,39 @@ namespace MineSweeper
             Console.WriteLine("   ---------------------");
         }
 
-        private static bool Boom(string[,] matrixOfTheMines, int minesRow, int minesCol)
+        private static bool HasMine(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
             bool isKilled = false;
-            int[] dRow = {1, 1, 1, 0, -1, -1, -1, 0};
-            int[] dCol = {1, 0, -1, -1, -1, 0, 1, 1};
-            int minesCounter = 0;
 
-            if (matrixOfTheMines[minesRow, minesCol] == "*")
+            if (matrixOfTheMines[inputRow, inputCol] == "*")
             {
                 isKilled = true;
             }
 
-            if ((matrixOfTheMines[minesRow, minesCol] != "") && (matrixOfTheMines[minesRow, minesCol] != "*"))
+            return isKilled;
+        }
+  
+        private static void IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
+        {
+            if ((matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*"))
             {
-                Console.WriteLine("Illegal Move!");
+                Console.WriteLine("The cell is already opened!");
             }
+        }
 
-            if (matrixOfTheMines[minesRow, minesCol] == "")
+        private static void PrintNumberOfSurroundingMines(string[,] matrixOfTheMines, int inputRow, int inputCol)
+        {
+            int[] dRow = { 1, 1, 1, 0, -1, -1, -1, 0 };
+            int[] dCol = { 1, 0, -1, -1, -1, 0, 1, 1 };
+            int minesCounter = 0;
+            const int MaxSurroundingCells = 8;
+
+            if (matrixOfTheMines[inputRow, inputCol] == "")
             {
-                for (int direction = 0; direction < 8; direction++)
+                for (int currentPosition = 0; currentPosition < MaxSurroundingCells; currentPosition++)
                 {
-                    int newRow = dRow[direction] + minesRow;
-                    int newCol = dCol[direction] + minesCol;
+                    int newRow = dRow[currentPosition] + inputRow;
+                    int newCol = dCol[currentPosition] + inputCol;
 
                     if ((newRow >= 0) && (newRow < matrixOfTheMines.GetLength(0)) &&
                         (newCol >= 0) && (newCol < matrixOfTheMines.GetLength(1)) &&
@@ -78,21 +88,20 @@ namespace MineSweeper
                         minesCounter++;
                     }
                 }
-                matrixOfTheMines[minesRow, minesCol] += Convert.ToString(minesCounter);
+                matrixOfTheMines[inputRow, inputCol] += Convert.ToString(minesCounter);
             }
-            return isKilled;
         }
 
-        private static bool Winner(string[,] matrix, int cntMines)
+        private static bool IsAllCellsOpened(string[,] matrix, int cntMines)
         {
             bool isWinner = false;
             int counter = 0;
 
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    if ((matrix[i, j] != "") && (matrix[i, j] != "*"))
+                    if ((matrix[row, col] != "") && (matrix[row, col] != "*"))
                     {
                         counter++;
                     }
@@ -107,8 +116,8 @@ namespace MineSweeper
         }
 
         private static void StartTheGame(out string[,] mines, out int row,
-                                         out int col, out bool isBoomed, out int minesCounter, out Random randomMines,
-                                         out int revealedCellsCounter)
+            out int col, out bool isBoomed, out int minesCounter, out Random randomMines,
+            out int revealedCellsCounter)
         {
             randomMines = new Random();
             row = 0;
@@ -116,13 +125,13 @@ namespace MineSweeper
             minesCounter = 0;
             revealedCellsCounter = 0;
             isBoomed = false;
-            mines = new string[MinesFieldRows,MinesFieldCols];
+            mines = new string[MinesFieldRows, MinesFieldCols];
 
-            for (int i = 0; i < mines.GetLength(0); i++)
+            for (int rows = 0; rows < mines.GetLength(0); rows++)
             {
-                for (int j = 0; j < mines.GetLength(1); j++)
+                for (int cols = 0; cols < mines.GetLength(1); cols++)
                 {
-                    mines[i, j] = "";
+                    mines[rows, cols] = "";
                 }
             }
         }
@@ -138,14 +147,14 @@ namespace MineSweeper
         {
             Random randomMines;
             string[,] mines;
-            int row;
-            int col;
+            int inputRow;
+            int inputCol;
             int minesCounter;
             int revealedCellsCounter;
             bool isBoomed;
 
-            StartTheGame(out mines, out row, out col,
-                         out isBoomed, out minesCounter, out randomMines, out revealedCellsCounter);
+            StartTheGame(out mines, out inputRow, out inputCol,
+                out isBoomed, out minesCounter, out randomMines, out revealedCellsCounter);
 
             FillWithRandomMines(mines, randomMines);
 
@@ -157,17 +166,24 @@ namespace MineSweeper
                 Console.Write("Enter row and column: ");
                 string line = Console.ReadLine();
                 line = line.Trim();
+                IsAlreadyOpen(mines, inputRow, inputCol);
 
                 if (IsMoveEntered(line))
                 {
                     string[] inputParams = line.Split();
-                    row = int.Parse(inputParams[0]);
-                    col = int.Parse(inputParams[1]);
-
-                    if ((row >= 0) && (row < mines.GetLength(0)) && (col >= 0) && (col < mines.GetLength(1)))
+                    inputRow = int.Parse(inputParams[0]);
+                    inputCol = int.Parse(inputParams[1]);
+                    
+                    bool isInRowRange = (inputRow >= 0) && (inputRow < mines.GetLength(0));
+                    bool isInColRange = (inputCol >= 0) && (inputCol < mines.GetLength(1));
+                    
+                    bool isInTheMatrix = isInRowRange && isInColRange;
+                       
+                    if (isInTheMatrix)
                     {
-                        bool hasBoomedMine = Boom(mines, row, col);
-
+                        bool hasBoomedMine = HasMine(mines, inputRow, inputCol);
+                        PrintNumberOfSurroundingMines(mines, inputRow, inputCol);
+                        
                         if (hasBoomedMine)
                         {
                             DrawField(mines, true);
@@ -183,7 +199,7 @@ namespace MineSweeper
                             return;
                         }
 
-                        bool winner = Winner(mines, minesCounter);
+                        bool winner = IsAllCellsOpened(mines, minesCounter);
 
                         if (winner)
                         {
@@ -204,7 +220,6 @@ namespace MineSweeper
                         Console.WriteLine("Enter valid Row/Col!\n");
                     }
                 }
-
                 else if (CheckIfCommandIsValid(line))
                 {
                     switch (line)
@@ -235,16 +250,16 @@ namespace MineSweeper
             }
         }
 
-        private static bool CheckIfCommandIsValid(string line)
+        private static bool CheckIfCommandIsValid(string command)
         {
-            return line.Equals("top") || line.Equals("restart") || line.Equals("exit");
+            return command.Equals("top") || command.Equals("restart") || command.Equals("exit");
         }
 
         private static bool IsMoveEntered(string line)
         {
             int row, col;
             string[] inputParams = line.Split();
-            return int.TryParse(inputParams[0],out row) && int.TryParse(inputParams[1], out col);
+            return int.TryParse(inputParams[0], out row) && int.TryParse(inputParams[1], out col);
         }
 
         private static void FillWithRandomMines(string[,] mines, Random randomMines)
