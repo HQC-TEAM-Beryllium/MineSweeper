@@ -1,11 +1,10 @@
 using System;
-using System.Linq;
-using Wintellect.PowerCollections;
 
 namespace MineSweeper
 {
     public class Mines
     {
+        static ScoreBoard scoreBoard = new ScoreBoard();
         private const int NumberOfMines = 15;
         private const int MinesFieldRows = 5;
         private const int MinesFieldCols = 10;
@@ -136,7 +135,7 @@ namespace MineSweeper
 
         public void PlayMines()
         {
-            ScoreBoard scoreBoard = new ScoreBoard();
+            
             Random randomMines;
             string[,] mines;
             int row;
@@ -144,10 +143,7 @@ namespace MineSweeper
             int minesCounter;
             int revealedCellsCounter;
             bool isBoomed;
-        // oxo glei glei
-        // i go to si imam :)
-        //start the Game
-        start:
+
             StartTheGame(out mines, out row, out col,
                 out isBoomed, out minesCounter, out randomMines, out revealedCellsCounter);
 
@@ -158,7 +154,6 @@ namespace MineSweeper
             while (true)
             {
                 DrawField(mines, isBoomed);
-            enterRowCol:
                 Console.Write("Enter row and column: ");
                 string line = Console.ReadLine();
                 line = line.Trim();
@@ -175,8 +170,7 @@ namespace MineSweeper
 
                         if (hasBoomedMine)
                         {
-                            isBoomed = true;
-                            DrawField(mines, isBoomed);
+                            DrawField(mines, true);
                             Console.Write("\nBooom! You are killed by a mine! ");
                             Console.WriteLine("You revealed {0} cells without mines.", revealedCellsCounter);
 
@@ -185,7 +179,7 @@ namespace MineSweeper
                             scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
 
                             Console.WriteLine();
-                            goto start;
+                            PlayMines();
 
                         }
 
@@ -200,7 +194,7 @@ namespace MineSweeper
                             scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
 
                             Console.WriteLine();
-                            goto start;
+                            PlayMines();
 
                         }
                         revealedCellsCounter++;
@@ -218,7 +212,7 @@ namespace MineSweeper
                         case "top":
                             {
                                 scoreBoard.PrintScoreBoard();
-                                goto enterRowCol;
+                                continue;
                             }
                         case "exit":
                             {
@@ -229,8 +223,8 @@ namespace MineSweeper
                         case "restart":
                             {
                                 Console.WriteLine();
-                                goto start;
-
+                                PlayMines();
+                                break;
                             }
                     }
                 }
