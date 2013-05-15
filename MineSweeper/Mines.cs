@@ -58,7 +58,7 @@ namespace MineSweeper
         {
             if ((matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*"))
             {
-                Console.WriteLine("The cell is already opened!");
+                Console.WriteLine("This cell is already opened!");
             }
         }
 
