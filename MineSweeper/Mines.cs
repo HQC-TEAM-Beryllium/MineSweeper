@@ -49,12 +49,7 @@ namespace MineSweeper
 
         private static bool HasMine(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
-            bool isKilled = false;
-
-            if (matrixOfTheMines[inputRow, inputCol] == "*")
-            {
-                isKilled = true;
-            }
+            bool isKilled = matrixOfTheMines[inputRow, inputCol] == "*";
 
             return isKilled;
         }
