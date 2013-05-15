@@ -147,6 +147,7 @@ namespace MineSweeper
             int minesCounter;
             int revealedCellsCounter;
             bool isBoomed;
+            bool isRestarted = false;
 
             StartTheGame(out mines, out inputRow, out inputCol,
                 out isBoomed, out minesCounter, out randomMines, out revealedCellsCounter);
@@ -157,6 +158,13 @@ namespace MineSweeper
 
             while (true)
             {
+                if (isRestarted)
+                {
+                    StartTheGame(out mines, out inputRow, out inputCol,
+                                 out isBoomed, out minesCounter, out randomMines, out revealedCellsCounter);
+                    FillWithRandomMines(mines, randomMines);
+                    isRestarted = false;
+                }
                 DrawField(mines, isBoomed);
                 Console.Write("Enter row and column: ");
                 string line = Console.ReadLine();
@@ -190,8 +198,8 @@ namespace MineSweeper
                             scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
 
                             Console.WriteLine();
-                            PlayMines();
-                            return;
+                            isRestarted = true;
+                            continue;
                         }
 
                         bool winner = IsAllCellsOpened(mines, minesCounter);
@@ -205,8 +213,8 @@ namespace MineSweeper
                             scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
 
                             Console.WriteLine();
-                            PlayMines();
-                            return;
+                            isRestarted = true;
+                            continue;
                         }
                         revealedCellsCounter++;
                     }
@@ -228,13 +236,13 @@ namespace MineSweeper
                             {
                                 Console.WriteLine("\nGood bye!\n");
                                 Environment.Exit(0);
-                                break;
+                                continue;
                             }
                         case "restart":
                             {
                                 Console.WriteLine();
-                                PlayMines();
-                                return;
+                                isRestarted = true;
+                                continue;
                             }
                     }
                 }
