@@ -236,7 +236,7 @@ namespace MineSweeper
                             {
                                 Console.WriteLine("\nGood bye!\n");
                                 Environment.Exit(0);
-                                continue;
+                                return;
                             }
                         case "restart":
                             {

@@ -39,12 +39,14 @@ namespace MineSweeper
             }
             else
             {
+                int currentPlayerCounter = 1;
+
                 Console.WriteLine("Scoreboard:");
 
                 foreach (int score in this.scoreBoard.Keys.OrderByDescending(obj => obj))
                 {
                     bool isFirstFiveScoreIsDisplayed = false;
-                    int currentPlayerCounter = 1;
+                    
 
                     foreach (string person in this.scoreBoard[score])
                     {
@@ -65,8 +67,6 @@ namespace MineSweeper
                         break;
                     }
                 }
-
-
             }
             Console.WriteLine();
         }
