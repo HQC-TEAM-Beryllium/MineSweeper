@@ -53,7 +53,7 @@ namespace MineSweeper
 
             return isKilled;
         }
-  
+
         private static void IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
             if ((matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*"))
@@ -176,17 +176,17 @@ namespace MineSweeper
                     string[] inputParams = line.Split();
                     inputRow = int.Parse(inputParams[0]);
                     inputCol = int.Parse(inputParams[1]);
-                    
+
                     bool isInRowRange = (inputRow >= 0) && (inputRow < mines.GetLength(0));
                     bool isInColRange = (inputCol >= 0) && (inputCol < mines.GetLength(1));
-                    
+
                     bool isInTheMatrix = isInRowRange && isInColRange;
-                       
+
                     if (isInTheMatrix)
                     {
                         bool hasBoomedMine = HasMine(mines, inputRow, inputCol);
                         PrintNumberOfSurroundingMines(mines, inputRow, inputCol);
-                        
+
                         if (hasBoomedMine)
                         {
                             DrawField(mines, true);
@@ -262,7 +262,10 @@ namespace MineSweeper
         {
             int row, col;
             string[] inputParams = line.Split();
-            return int.TryParse(inputParams[0], out row) && int.TryParse(inputParams[1], out col);
+
+            if (inputParams.Length == 2)
+                return int.TryParse(inputParams[0], out row) && int.TryParse(inputParams[1], out col);
+            return false;
         }
 
         private static void FillWithRandomMines(string[,] mines, Random randomMines)
