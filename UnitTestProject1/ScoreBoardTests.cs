@@ -58,7 +58,6 @@ namespace Minesweeper
 
             var newScoreBoard = new ScoreBoard();
             newScoreBoard.AddPlayer(playerName, playerScore);
-            Assert.AreEqual("Enter your name, please", newScoreBoard.scoreBoard.Contains(playerScore, playerName));
         }
 
         [TestMethod]
@@ -72,17 +71,103 @@ namespace Minesweeper
 
             Assert.AreEqual(true, newScoreBoard.scoreBoard.ContainsKey(playerScore));
         }
-        //[TestMethod]
-        //public void PrintScoreBoardTest()
-        //{
-        //    string playerName = "Dragan";
-        //    int playerScore = 1;
-        //    OrderedMultiDictionary<int, string> scoreBoard = new OrderedMultiDictionary<int, string>(true);
-        //    scoreBoard.Add(playerScore, playerName);
-        //    Assert.IsNotNull(scoreBoard.Values.Count);
-        //    Assert.AreEqual(true, scoreBoard.ContainsKey(playerScore));
-        //    Assert.AreEqual("{" + playerName + "}", scoreBoard.Values.ToString());
-        //    Assert.IsTrue(scoreBoard.Values.Count == 1);
-        //}
+        
+        [TestMethod]
+        public void PrintEmtyScoreBoardTest()
+        {
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+            var newScoreboard = new ScoreBoard();
+            newScoreboard.PrintScoreBoard();
+
+            string outputStr = output.ToString();
+
+            Assert.AreEqual("\r\nScoreboard is empty!\r\n\r\n", outputStr);
+        }
+
+        [TestMethod]
+        public void PrintOnePlayerInScoreBoardTest()
+        {
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+            var newScoreboard = new ScoreBoard();
+            newScoreboard.AddPlayer("Pesho", 29);
+            newScoreboard.PrintScoreBoard();
+
+            string outputStr = output.ToString();
+
+            Assert.AreEqual("Scoreboard:\r\n1. Pesho --> 29 cells\r\n\r\n", outputStr);
+        }
+
+        [TestMethod]
+        public void PrintThreePlayersInScoreBoardTest()
+        {
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+            var newScoreboard = new ScoreBoard();
+            newScoreboard.AddPlayer("Pesho", 29);
+            newScoreboard.AddPlayer("Angel", 5);
+            newScoreboard.AddPlayer("John", 35);
+            newScoreboard.PrintScoreBoard();
+
+            string outputStr = output.ToString();
+
+            Assert.AreEqual("Scoreboard:\r\n1. John --> 35 cells\r\n2. Pesho --> 29 cells\r\n3. Angel --> 5 cells\r\n\r\n", outputStr);
+        }
+
+        [TestMethod]
+        public void PrintFivePlayersInScoreBoardTest()
+        {
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+            var newScoreboard = new ScoreBoard();
+            newScoreboard.AddPlayer("Pesho", 29);
+            newScoreboard.AddPlayer("Angel", 5);
+            newScoreboard.AddPlayer("John", 35);
+            newScoreboard.AddPlayer("Mike", 4);
+            newScoreboard.AddPlayer("Ben", 3);
+            newScoreboard.PrintScoreBoard();
+
+            string outputStr = output.ToString();
+
+            Assert.AreEqual("Scoreboard:\r\n1. John --> 35 cells\r\n2. Pesho --> 29 cells\r\n3. Angel --> 5 cells\r\n4. Mike --> 4 cells\r\n5. Ben --> 3 cells\r\n\r\n", outputStr);
+        }
+
+        [TestMethod]
+        public void PrintSixPlayersInScoreBoardTest()
+        {
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+            var newScoreboard = new ScoreBoard();
+            newScoreboard.AddPlayer("Pesho", 29);
+            newScoreboard.AddPlayer("Angel", 5);
+            newScoreboard.AddPlayer("John", 35);
+            newScoreboard.AddPlayer("Mike", 4);
+            newScoreboard.AddPlayer("Ben", 3);
+            newScoreboard.AddPlayer("Hidden", 1);
+            newScoreboard.PrintScoreBoard();
+
+            string outputStr = output.ToString();
+
+            Assert.AreEqual("Scoreboard:\r\n1. John --> 35 cells\r\n2. Pesho --> 29 cells\r\n3. Angel --> 5 cells\r\n4. Mike --> 4 cells\r\n5. Ben --> 3 cells\r\n\r\n", outputStr);
+        }
     }
 }
+//newScoreboard.AddPlayer("Pesho", 29);
+
+//newScoreboard.AddPlayer("Pesho", 29);
+//            scoreBoard.Add(playerScore, playerName);
+//            Assert.IsNotNull(scoreBoard.Values.Count);
+//            Assert.AreEqual(true, scoreBoard.ContainsKey(playerScore));
+//            Assert.AreEqual("{" + playerName + "}", scoreBoard.Values.ToString());
+//            Assert.IsTrue(scoreBoard.Values.Count == 1);

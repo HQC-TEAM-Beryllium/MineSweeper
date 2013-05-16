@@ -59,11 +59,11 @@ namespace MineSweeper
             const int MaxTopScoredUsers = 5;
             const int EmptyScoreBoard = 0;
 
-            Console.WriteLine();
+            
             
             if (this.scoreBoard.Values.Count == EmptyScoreBoard)
             {
-                Console.WriteLine("Scoreboard empty!");
+                Console.WriteLine("\r\nScoreboard is empty!");
             }
             else
             {
