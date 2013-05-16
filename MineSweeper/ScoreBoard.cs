@@ -38,7 +38,7 @@ namespace MineSweeper
             }
         }
 
-        public void Print()
+        public void PrintScoreBoard()
         {
             
             const int MaxTopScoredUsers = 5;
