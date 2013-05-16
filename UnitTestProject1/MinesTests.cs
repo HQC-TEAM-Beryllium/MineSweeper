@@ -1,9 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MineSweeper;
 
-namespace MineSweeper
+namespace UnitTestProject1
 {
     [TestClass]
     public class MinesTests
@@ -98,15 +97,38 @@ namespace MineSweeper
         public void IsInTheMatrixTest()
         {
             var minesGame = new Mines();
-            Assert.IsFalse(minesGame.IsInTheMatrix(5,10));
-            Assert.IsFalse(minesGame.IsInTheMatrix(5, 0));
-            Assert.IsFalse(minesGame.IsInTheMatrix(0, 10));
-            Assert.IsFalse(minesGame.IsInTheMatrix(0, -1));
+            //down right ouside check
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows,Mines.MinesFieldCols));
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows , Mines.MinesFieldCols-1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows-1, Mines.MinesFieldCols));
+            //down right inside check
+            Assert.IsTrue(minesGame.IsInTheMatrix(Mines.MinesFieldRows - 1, Mines.MinesFieldCols-1));
+
+
+            //down left outside check
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows, -1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows, 0));
+            Assert.IsFalse(minesGame.IsInTheMatrix(Mines.MinesFieldRows - 1, -1));
+            //down left inside check
+            Assert.IsTrue(minesGame.IsInTheMatrix(Mines.MinesFieldRows - 1, 0));
+
+            //up left outside check
             Assert.IsFalse(minesGame.IsInTheMatrix(-1, -1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(0, -1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(-1, 0));
+            //up left inside check
             Assert.IsTrue(minesGame.IsInTheMatrix(0, 0));
-            Assert.IsTrue(minesGame.IsInTheMatrix(0, 9));
-            Assert.IsTrue(minesGame.IsInTheMatrix(4, 0));
-            Assert.IsTrue(minesGame.IsInTheMatrix(4, 9));
+
+            //up right outside check
+            Assert.IsFalse(minesGame.IsInTheMatrix(-1, Mines.MinesFieldCols));
+            Assert.IsFalse(minesGame.IsInTheMatrix(-1, Mines.MinesFieldCols-1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(0, Mines.MinesFieldCols));
+            //up right inside check
+            Assert.IsTrue(minesGame.IsInTheMatrix(0, Mines.MinesFieldCols - 1));
+
+
+            //inside in the middle check
+            Assert.IsTrue(minesGame.IsInTheMatrix(Mines.MinesFieldRows/2, Mines.MinesFieldCols/2));
         }
     }
 }

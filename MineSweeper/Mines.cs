@@ -6,9 +6,9 @@ namespace MineSweeper
     {
         private static readonly ScoreBoard scoreBoard = new ScoreBoard();
 
-        private const int NumberOfMines = 15;
-        private const int MinesFieldRows = 5;
-        private const int MinesFieldCols = 10;
+        internal const int NumberOfMines = 15;
+        internal const int MinesFieldRows = 5;
+        internal const int MinesFieldCols = 10;
 
         private static void DrawField(string[,] matrixOfTheMines, bool boomed)
         {
