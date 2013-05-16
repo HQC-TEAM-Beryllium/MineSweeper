@@ -94,5 +94,19 @@ namespace MineSweeper
             mines[10, 20] += "*";
         }
 
+        [TestMethod]
+        public void IsInTheMatrixTest()
+        {
+            var minesGame = new Mines();
+            Assert.IsFalse(minesGame.IsInTheMatrix(5,10));
+            Assert.IsFalse(minesGame.IsInTheMatrix(5, 0));
+            Assert.IsFalse(minesGame.IsInTheMatrix(0, 10));
+            Assert.IsFalse(minesGame.IsInTheMatrix(0, -1));
+            Assert.IsFalse(minesGame.IsInTheMatrix(-1, -1));
+            Assert.IsTrue(minesGame.IsInTheMatrix(0, 0));
+            Assert.IsTrue(minesGame.IsInTheMatrix(0, 9));
+            Assert.IsTrue(minesGame.IsInTheMatrix(4, 0));
+            Assert.IsTrue(minesGame.IsInTheMatrix(4, 9));
+        }
     }
 }

@@ -15,3 +15,11 @@ C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweepe
 C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweeper.pdb
 C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\PowerCollections.xml
 C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweeper.exe
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweeper.pdb
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\PowerCollections.xml
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\s1me0n\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
