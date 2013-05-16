@@ -4,6 +4,7 @@ using Wintellect.PowerCollections;
 
 namespace MineSweeper
 {
+    
     public class ScoreBoard
     {
         private readonly OrderedMultiDictionary<int, string> scoreBoard;
@@ -12,7 +13,7 @@ namespace MineSweeper
         {
             this.scoreBoard = new OrderedMultiDictionary<int, string>(true);
         }
-
+        //Add player with results in OrderedMultiDictionary
         public void AddPlayer(string playerName, int playerScore)
         {
             if (!scoreBoard.ContainsKey(playerScore))
