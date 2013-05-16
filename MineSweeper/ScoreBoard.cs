@@ -7,26 +7,38 @@ namespace MineSweeper
     
     public class ScoreBoard
     {
-        private readonly OrderedMultiDictionary<int, string> scoreBoard;
+        internal readonly OrderedMultiDictionary<int, string> scoreBoard;
 
         public ScoreBoard()
         {
             this.scoreBoard = new OrderedMultiDictionary<int, string>(true);
         }
+
         //Add player with results in OrderedMultiDictionary
         public void AddPlayer(string playerName, int playerScore)
         {
-            if (!scoreBoard.ContainsKey(playerScore))
+            if (playerName == string.Empty)
             {
-                scoreBoard.Add(playerScore, playerName);
+                Console.WriteLine("Enter your name, please");
             }
-            else 
+            else if(playerName == null)
             {
-                scoreBoard[playerScore].Add(playerName);
+                throw new NullReferenceException("PlayName can NOT be null");
+            }
+            else
+            {
+                if (!scoreBoard.ContainsKey(playerScore))
+                {
+                    scoreBoard.Add(playerScore, playerName);
+                }
+                else
+                {
+                    scoreBoard[playerScore].Add(playerName);
+                }
             }
         }
 
-        public void PrintScoreBoard()
+        public void Print()
         {
             
             const int MaxTopScoredUsers = 5;

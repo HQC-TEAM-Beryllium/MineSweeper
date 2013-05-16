@@ -10,3 +10,8 @@ C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.e
 C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.pdb
 C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\PowerCollections.dll
 C:\Users\s1me0n\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Team-Work-Project.csprojResolveAssemblyReference.cache
+C:\Users\Elza\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Minesweeper.exe
+C:\Users\Elza\Documents\GitHub\MineSweeper\MineSweeper\obj\x86\Debug\Minesweeper.pdb
+C:\Users\Elza\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.exe
+C:\Users\Elza\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\Minesweeper.pdb
+C:\Users\Elza\Documents\GitHub\MineSweeper\MineSweeper\bin\Debug\PowerCollections.dll

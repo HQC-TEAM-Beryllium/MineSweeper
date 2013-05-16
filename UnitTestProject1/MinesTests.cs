@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MineSweeper
@@ -9,14 +11,26 @@ namespace MineSweeper
         [TestMethod]
         public void DisplayTest()
         {
-            
-            string[,] matrixOfTheMines = new string[5, 10];
-            bool boomed = false;
-            matrixOfTheMines[0, 0] = "";
-            matrixOfTheMines[0, 2] = "*";
 
-            Assert.IsFalse(!(boomed) && ((matrixOfTheMines[0, 2] == "")));
-            Assert.IsTrue((matrixOfTheMines[0, 0] == string.Empty) || (matrixOfTheMines[0, 0] == "*"));
+            var output = new StringBuilder();
+            var textWriter = new StringWriter(output);
+            Console.SetOut(textWriter);
+
+
+
+            var input = @"Test123
+test1234";
+            var textReader = new StringReader(input);
+            Console.SetIn(textReader);
+
+            Mines.PrintInitialMessage();
+            //string[,] matrixOfTheMines = new string[5, 10];
+            //bool boomed = false;
+            //matrixOfTheMines[0, 0] = "";
+            //matrixOfTheMines[0, 2] = "*";
+
+            //Assert.IsFalse(!(boomed) && ((matrixOfTheMines[0, 2] == "")));
+            //Assert.IsTrue((matrixOfTheMines[0, 0] == string.Empty) || (matrixOfTheMines[0, 0] == "*"));
         }
 
         [TestMethod]

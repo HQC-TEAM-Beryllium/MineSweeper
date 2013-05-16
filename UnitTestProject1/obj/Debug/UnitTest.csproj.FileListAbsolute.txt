@@ -7,3 +7,11 @@ D:\Telerik Academy\C# TeamWork\KPK\UnitTestProject1\bin\Debug\PowerCollections.x
 D:\Telerik Academy\C# TeamWork\KPK\UnitTestProject1\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
 D:\Telerik Academy\C# TeamWork\KPK\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 D:\Telerik Academy\C# TeamWork\KPK\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweeper.exe
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\Minesweeper.pdb
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\bin\Debug\PowerCollections.xml
+C:\Users\Elza\Documents\GitHub\MineSweeper\UnitTestProject1\obj\Debug\UnitTestProject1.pdb

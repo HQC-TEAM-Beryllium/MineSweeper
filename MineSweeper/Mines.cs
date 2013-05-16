@@ -131,8 +131,11 @@ namespace MineSweeper
             }
         }
 
-        private static void PrintInitialMessage()
+        internal static void PrintInitialMessage()
         {
+            //var input = Console.ReadLine();
+            //var input2 = Console.ReadLine();
+
             string startMessage =
                 @"Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit  the game.";
             Console.WriteLine(startMessage + "\n");
@@ -229,7 +232,7 @@ namespace MineSweeper
                     {
                         case "top":
                             {
-                                scoreBoard.PrintScoreBoard();
+                                scoreBoard.Print();
                                 continue;
                             }
                         case "exit":
