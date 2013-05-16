@@ -56,11 +56,7 @@ namespace MineSweeper
 
         private static bool IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
-            if ((matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*"))
-            {
-                return true;
-            }
-            return false;
+            return (matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*");
         }
 
         private static void PrintNumberOfSurroundingMines(string[,] matrixOfTheMines, int inputRow, int inputCol)
@@ -70,22 +66,23 @@ namespace MineSweeper
             int minesCounter = 0;
             const int MaxSurroundingCells = 8;
 
-            if (matrixOfTheMines[inputRow, inputCol] == "")
+            if (matrixOfTheMines[inputRow, inputCol] != "")
             {
-                for (int currentPosition = 0; currentPosition < MaxSurroundingCells; currentPosition++)
-                {
-                    int newRow = dRow[currentPosition] + inputRow;
-                    int newCol = dCol[currentPosition] + inputCol;
-
-                    if ((newRow >= 0) && (newRow < matrixOfTheMines.GetLength(0)) &&
-                        (newCol >= 0) && (newCol < matrixOfTheMines.GetLength(1)) &&
-                        (matrixOfTheMines[newRow, newCol] == "*"))
-                    {
-                        minesCounter++;
-                    }
-                }
-                matrixOfTheMines[inputRow, inputCol] += Convert.ToString(minesCounter);
+                return;
             }
+            for (int currentPosition = 0; currentPosition < MaxSurroundingCells; currentPosition++)
+            {
+                int newRow = dRow[currentPosition] + inputRow;
+                int newCol = dCol[currentPosition] + inputCol;
+
+                if ((newRow >= 0) && (newRow < matrixOfTheMines.GetLength(0)) &&
+                    (newCol >= 0) && (newCol < matrixOfTheMines.GetLength(1)) &&
+                    (matrixOfTheMines[newRow, newCol] == "*"))
+                {
+                    minesCounter++;
+                }
+            }
+            matrixOfTheMines[inputRow, inputCol] += Convert.ToString(minesCounter);
         }
 
         private static bool IsAllCellsOpened(string[,] matrix, int cntMines)
@@ -265,11 +262,12 @@ namespace MineSweeper
             {
                 int randomRow = randomMines.Next(0, 5);
                 int randomCol = randomMines.Next(0, 10);
-                if (mines[randomRow, randomCol] == "")
+                if (mines[randomRow, randomCol] != "")
                 {
-                    mines[randomRow, randomCol] += "*";
-                    minesCounter++;
+                    continue;
                 }
+                mines[randomRow, randomCol] += "*";
+                minesCounter++;
             }
         }
 
