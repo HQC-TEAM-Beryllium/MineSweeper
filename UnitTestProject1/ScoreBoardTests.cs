@@ -163,11 +163,3 @@ namespace Minesweeper
         }
     }
 }
-//newScoreboard.AddPlayer("Pesho", 29);
-
-//newScoreboard.AddPlayer("Pesho", 29);
-//            scoreBoard.Add(playerScore, playerName);
-//            Assert.IsNotNull(scoreBoard.Values.Count);
-//            Assert.AreEqual(true, scoreBoard.ContainsKey(playerScore));
-//            Assert.AreEqual("{" + playerName + "}", scoreBoard.Values.ToString());
-//            Assert.IsTrue(scoreBoard.Values.Count == 1);
