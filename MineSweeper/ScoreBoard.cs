@@ -10,6 +10,16 @@ namespace MineSweeper
     {
         internal readonly OrderedMultiDictionary<int, string> scoreBoard;
 
+        internal OrderedMultiDictionary<int, string> ScoreBoardd 
+        { 
+            get 
+            { 
+                return this.scoreBoard; 
+            } 
+        }
+
+       
+
         public ScoreBoard()
         {
             this.scoreBoard = new OrderedMultiDictionary<int, string>(true);

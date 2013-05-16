@@ -66,10 +66,11 @@ namespace Minesweeper
         {
             string playerName = "Pesho";
             int playerScore = 0;
-
+            
             var newScoreBoard = new ScoreBoard();
             newScoreBoard.AddPlayer(playerName, playerScore);
-            Assert.AreEqual("0", newScoreBoard.scoreBoard.ContainsKey(playerScore).ToString());
+
+            Assert.AreEqual(true, newScoreBoard.scoreBoard.ContainsKey(playerScore));
         }
         //[TestMethod]
         //public void PrintScoreBoardTest()
