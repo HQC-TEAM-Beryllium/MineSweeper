@@ -4,21 +4,21 @@ using Wintellect.PowerCollections;
 
 namespace MineSweeper
 {
-    
-    
+
+
     public class ScoreBoard
     {
         internal readonly OrderedMultiDictionary<int, string> scoreBoard;
 
-        internal OrderedMultiDictionary<int, string> ScoreBoardd 
-        { 
-            get 
-            { 
-                return this.scoreBoard; 
-            } 
+        internal OrderedMultiDictionary<int, string> ScoreBoardd
+        {
+            get
+            {
+                return this.scoreBoard;
+            }
         }
 
-       
+
 
         public ScoreBoard()
         {
@@ -28,39 +28,34 @@ namespace MineSweeper
         //Add player with results in OrderedMultiDictionary
         public void AddPlayer(string playerName, int playerScore)
         {
-            if (playerScore<0)
+            if (playerScore < 0)
             {
                 throw new ArgumentOutOfRangeException("Player Score can NOT be negative!");
             }
-            else if (playerName == string.Empty)
+            if (string.IsNullOrEmpty(playerName))
             {
-                Console.WriteLine("Enter your name, please");
+                playerName = "unknown";
             }
-            else if(playerName == null)
+
+            if (!scoreBoard.ContainsKey(playerScore))
             {
-                throw new NullReferenceException("PlayerName can NOT be null");
+                scoreBoard.Add(playerScore, playerName);
             }
             else
             {
-                if (!scoreBoard.ContainsKey(playerScore))
-                {
-                    scoreBoard.Add(playerScore, playerName);
-                }
-                else
-                {
-                    scoreBoard[playerScore].Add(playerName);
-                }
+                scoreBoard[playerScore].Add(playerName);
             }
+
         }
 
         public void PrintScoreBoard()
         {
-            
+
             const int MaxTopScoredUsers = 5;
             const int EmptyScoreBoard = 0;
 
-            
-            
+
+
             if (this.scoreBoard.Values.Count == EmptyScoreBoard)
             {
                 Console.WriteLine("\r\nScoreboard is empty!");
@@ -74,7 +69,7 @@ namespace MineSweeper
                 foreach (int score in this.scoreBoard.Keys.OrderByDescending(obj => obj))
                 {
                     bool isFirstFiveScoreIsDisplayed = false;
-                    
+
 
                     foreach (string person in this.scoreBoard[score])
                     {
