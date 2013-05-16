@@ -54,12 +54,13 @@ namespace MineSweeper
             return isKilled;
         }
 
-        private static void IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
+        private static bool IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
             if ((matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*"))
             {
-                Console.WriteLine("This cell is already opened!");
+                return true;
             }
+            return false;
         }
 
         private static void PrintNumberOfSurroundingMines(string[,] matrixOfTheMines, int inputRow, int inputCol)
@@ -131,11 +132,8 @@ namespace MineSweeper
             }
         }
 
-        internal static void PrintInitialMessage()
+        private static void PrintInitialMessage()
         {
-            //var input = Console.ReadLine();
-            //var input2 = Console.ReadLine();
-
             string startMessage =
                 @"Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit  the game.";
             Console.WriteLine(startMessage + "\n");
@@ -171,51 +169,31 @@ namespace MineSweeper
                 DrawField(mines, isBoomed);
                 Console.Write("Enter row and column: ");
                 string line = Console.ReadLine();
-                line = line.Trim();
-                IsAlreadyOpen(mines, inputRow, inputCol);
 
-                if (IsMoveEntered(line))
+                if (IsMoveEntered(line,ref inputRow, ref inputCol))
                 {
-                    string[] inputParams = line.Split();
-                    inputRow = int.Parse(inputParams[0]);
-                    inputCol = int.Parse(inputParams[1]);
-
-                    bool isInRowRange = (inputRow >= 0) && (inputRow < mines.GetLength(0));
-                    bool isInColRange = (inputCol >= 0) && (inputCol < mines.GetLength(1));
-
-                    bool isInTheMatrix = isInRowRange && isInColRange;
-
-                    if (isInTheMatrix)
+                    if (IsAlreadyOpen(mines, inputRow, inputCol))
                     {
-                        bool hasBoomedMine = HasMine(mines, inputRow, inputCol);
+                        Console.WriteLine("The cell is already opened!");
+                        continue;
+                    }
+
+                    if ((inputRow >= 0) && (inputRow < mines.GetLength(0)) &&
+                        (inputCol >= 0) && (inputCol < mines.GetLength(1)))
+                    {
                         PrintNumberOfSurroundingMines(mines, inputRow, inputCol);
 
-                        if (hasBoomedMine)
+                        if (HasMine(mines, inputRow, inputCol))
                         {
                             DrawField(mines, true);
-                            Console.Write("\nBooom! You are killed by a mine! ");
-                            Console.WriteLine("You revealed {0} cells without mines.", revealedCellsCounter);
-
-                            Console.Write("Please enter your name for the top scoreboard: ");
-                            string currentPlayerName = Console.ReadLine();
-                            scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
-
-                            Console.WriteLine();
+                            ExploadedMineAction(revealedCellsCounter);
                             isRestarted = true;
                             continue;
                         }
 
-                        bool winner = IsAllCellsOpened(mines, minesCounter);
-
-                        if (winner)
+                        if (IsAllCellsOpened(mines, minesCounter))
                         {
-                            Console.WriteLine("Congratulations! You are the WINNER!\n");
-
-                            Console.Write("Please enter your name for the top scoreboard: ");
-                            string currentPlayerName = Console.ReadLine();
-                            scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
-
-                            Console.WriteLine();
+                            WinningAllMinesOpened(revealedCellsCounter);
                             isRestarted = true;
                             continue;
                         }
@@ -230,23 +208,9 @@ namespace MineSweeper
                 {
                     switch (line)
                     {
-                        case "top":
-                            {
-                                scoreBoard.Print();
-                                continue;
-                            }
-                        case "exit":
-                            {
-                                Console.WriteLine("\nGood bye!\n");
-                                Environment.Exit(0);
-                                return;
-                            }
-                        case "restart":
-                            {
-                                Console.WriteLine();
-                                isRestarted = true;
-                                continue;
-                            }
+                        case "top":{ scoreBoard.PrintScoreBoard(); continue; }
+                        case "exit": { Console.WriteLine("\nGood bye!\n"); Environment.Exit(0); return; }
+                        case "restart": { Console.WriteLine(); isRestarted = true; continue; }
                     }
                 }
                 else
@@ -256,14 +220,37 @@ namespace MineSweeper
             }
         }
 
+        private static void WinningAllMinesOpened(int revealedCellsCounter)
+        {
+            Console.WriteLine("Congratulations! You are the WINNER!\n");
+
+            Console.Write("Please enter your name for the top scoreboard: ");
+            string currentPlayerName = Console.ReadLine();
+            scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
+
+            Console.WriteLine();
+        }
+
+        private static void ExploadedMineAction(int revealedCellsCounter)
+        {
+            Console.Write("\nBooom! You are killed by a mine! ");
+            Console.WriteLine("You revealed {0} cells without mines.", revealedCellsCounter);
+
+            Console.Write("Please enter your name for the top scoreboard: ");
+            string currentPlayerName = Console.ReadLine();
+            scoreBoard.AddPlayer(currentPlayerName, revealedCellsCounter);
+
+            Console.WriteLine();
+        }
+
         private static bool CheckIfCommandIsValid(string command)
         {
             return command.Equals("top") || command.Equals("restart") || command.Equals("exit");
         }
 
-        private static bool IsMoveEntered(string line)
+        private static bool IsMoveEntered(string line, ref int row,ref int col)
         {
-            int row, col;
+            line = line.Trim();
             string[] inputParams = line.Split();
 
             if (inputParams.Length == 2)
