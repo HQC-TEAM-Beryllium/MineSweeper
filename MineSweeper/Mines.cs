@@ -52,7 +52,7 @@ namespace MineSweeper
             return matrixOfTheMines[inputRow, inputCol] == "*";
         }
 
-        private static bool IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
+        internal bool IsAlreadyOpen(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
             return (matrixOfTheMines[inputRow, inputCol] != "") && (matrixOfTheMines[inputRow, inputCol] != "*");
         }
@@ -259,8 +259,8 @@ namespace MineSweeper
 
             while (minesCounter < NumberOfMines)
             {
-                int randomRow = randomMines.Next(0, 5);
-                int randomCol = randomMines.Next(0, 10);
+                int randomRow = randomMines.Next(0, MinesFieldRows);
+                int randomCol = randomMines.Next(0, MinesFieldCols);
                 if (mines[randomRow, randomCol] != "")
                 {
                     continue;
