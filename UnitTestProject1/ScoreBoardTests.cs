@@ -41,13 +41,13 @@ namespace UnitTestProject1
 
             const string playerName = "";
             const int playerScore = 20;
+            const string expected = "unknown";
             var newScoreBoard = new ScoreBoard();
             newScoreBoard.AddPlayer(playerName, playerScore);
 
-            string outputStr = output.ToString();
-
-            Assert.AreEqual("Enter your name, please\r\n", outputStr);
+            Assert.IsTrue(newScoreBoard.ScoreBoardd.Contains(20, "unknown"));
         }
+
 
         [TestMethod]
         [ExpectedException (typeof( ArgumentOutOfRangeException))]
@@ -140,6 +140,7 @@ namespace UnitTestProject1
 
             Assert.AreEqual("Scoreboard:\r\n1. John --> 35 cells\r\n2. Pesho --> 29 cells\r\n3. Angel --> 5 cells\r\n4. Mike --> 4 cells\r\n5. Ben --> 3 cells\r\n\r\n", outputStr);
         }
+
 
         [TestMethod]
         public void PrintSixPlayersInScoreBoardTest()

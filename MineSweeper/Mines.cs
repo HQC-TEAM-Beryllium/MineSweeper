@@ -47,7 +47,7 @@ namespace MineSweeper
             Console.WriteLine("   ---------------------");
         }
 
-        private static bool HasMine(string[,] matrixOfTheMines, int inputRow, int inputCol)
+        internal bool HasMine(string[,] matrixOfTheMines, int inputRow, int inputCol)
         {
             return matrixOfTheMines[inputRow, inputCol] == "*";
         }
@@ -127,11 +127,11 @@ namespace MineSweeper
             }
         }
 
-        private static void PrintInitialMessage()
+        internal void PrintInitialMessage()
         {
             string startMessage =
                 @"Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit  the game.";
-            Console.WriteLine(startMessage + "\n");
+            Console.WriteLine(startMessage);
         }
 
         public void PlayMines()
@@ -216,7 +216,7 @@ namespace MineSweeper
 
         private static void WinningAllMinesOpened(int revealedCellsCounter)
         {
-            Console.WriteLine("Congratulations! You are the WINNER!\n");
+            Console.WriteLine("Congratulations! You are the WINNER!");
 
             Console.Write("Please enter your name for the top scoreboard: ");
             string currentPlayerName = Console.ReadLine();
@@ -237,8 +237,9 @@ namespace MineSweeper
             Console.WriteLine();
         }
 
-        private static bool CheckIfCommandIsValid(string command)
+        internal bool CheckIfCommandIsValid(string command)
         {
+            command = command.ToLower();
             return command.Equals("top") || command.Equals("restart") || command.Equals("exit");
         }
 
